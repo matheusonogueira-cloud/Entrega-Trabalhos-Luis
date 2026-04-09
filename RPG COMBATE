@@ -1,0 +1,96 @@
+// Matheus Oliveira Nogueira
+//tentando fazer rpg
+
+{
+
+    // colocando o nome do heroi, classe, nivel, vida(hp), mana e ouro
+
+    Console.Write("Nome do Herói: ");
+    string nome = Console.ReadLine();
+
+    Console.Write("Classe do Herói (Mago, Clérigo, Guerreiro, Druida, Anão, Elfo ou Troll): ");
+    string classe = Console.ReadLine();
+
+    Console.Write("Nível do Herói: ");
+    int nivel;
+    int.TryParse(Console.ReadLine(), out nivel);
+
+    Console.Write("Pontos de Vida (HP): ");
+    double hp;
+    double.TryParse(Console.ReadLine(), out hp);
+
+    Console.Write("Pontos de Mana: ");
+    int mana;
+    int.TryParse(Console.ReadLine(), out mana);
+
+    Console.Write("Ouro na mochila: ");
+    double ouro;
+    double.TryParse(Console.ReadLine(), out ouro);
+
+    Console.WriteLine("\n--- Avaliação da Guilda ---");
+
+    // Regra da raça de entra na guilda, se for troll não entra, mais outra raça pode
+    if (classe == "Troll")
+
+    {
+
+        Console.WriteLine("❌ Trolls não são bem-vindos na guilda! Você foi expulso.");
+
+        return;
+    }
+    else if (classe != "Troll" && !(nivel < 5))
+    {
+        Console.WriteLine("✅ Você pode entrar na guilda.");
+    }
+
+    // Cálculo do poder base
+    double poderBase = (nivel * 10) + (hp / 2) - 10;
+    Console.WriteLine("Poder Base do herói: " + poderBase);
+
+    // Regra do dano crítico
+    if (poderBase % 2 == 0)
+    {
+        Console.WriteLine("⚔️✨ Ataque Crítico ativado! O poder é par.");
+    }
+
+    bool podeAtacar = false;
+
+    // Regra da magia
+    if (classe == "Mago" || classe == "Druida" || classe == "Clérigo")
+    {
+        if (mana >= 225 && nivel <= 100)
+        {
+            Console.WriteLine("🔮 O herói usa magia contra o dragão!");
+            podeAtacar = true;
+        }
+        else
+        {
+            Console.WriteLine("🪵 O cajado falhou! Mana insuficiente.");
+        }
+    }
+
+    // Regra do ataque físico
+    else if (classe == "Guerreiro" || classe == "Anão" || classe == "Elfo")
+    {
+        if (hp > 250 && poderBase > 350)
+        {
+            Console.WriteLine("🗡 O herói ataca fisicamente o dragão! ");
+            podeAtacar = true;
+        }
+    }
+
+    // Suborno ao dragão
+    if (podeAtacar)
+    {
+        return;
+    }
+    if (ouro > 1500 || classe == "Anão")
+    {
+        Console.WriteLine(" O herói subornou o dragão e escapou! ");
+    }
+    else
+    {
+        Console.WriteLine(" O herói virou churrasco de dragão... ");
+    }
+}
+

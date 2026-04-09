@@ -1,0 +1,30 @@
+// Matheus Oliveira Nogueira
+
+//Calculadora de IMC
+
+Console.WriteLine("Calculadora de IMC");
+Console.WriteLine("-------------------");
+Console.WriteLine("seu peso em Kg:");
+double peso = Convert.ToDouble(Console.ReadLine());
+Console.WriteLine("sua altura em metros:");
+double altura = Convert.ToDouble(Console.ReadLine());
+double imc = peso / (altura * altura);
+Console.WriteLine($"seu IMC é: {imc:F2}");
+Console.WriteLine("Classificação:");
+if (imc < 18.5)
+{
+    Console.WriteLine("Abaixo do peso");
+}
+else if (imc >= 18.5 && imc < 25)
+{
+    Console.WriteLine("Peso normal");
+}
+else if (imc >= 25 && imc < 30)
+{
+    Console.WriteLine("Sobrepeso");
+}
+else
+{using System;
+
+    Console.WriteLine("Obesidade");
+}

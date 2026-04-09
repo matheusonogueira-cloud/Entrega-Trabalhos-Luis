@@ -1,0 +1,36 @@
+// Matheus Oliveira Nogueira
+
+// 1. Nome usando a variavel d (string)
+Console.Write("Nome do Herói: ");
+string nome = Console.ReadLine();
+
+// Classe do Héroi
+Console.WriteLine("Qual sua Classe: ");
+string ClassedoHeroi = Console.ReadLine();
+
+// 2. Ataque (int) - Soma
+Console.Write("Ataque Base: ");
+int ataqueBase = int.Parse(Console.ReadLine());
+int ataqueTotal = ataqueBase + 10; // +10 de bônus padrão 
+
+// 3. Vida (double) - Subtração
+Console.Write("Vida do Inimigo: ");
+double vidaInimigo = double.Parse(Console.ReadLine());
+double vidaRestante = vidaInimigo - 25.5;
+
+// 4. Moedas (float) - Multiplicação
+Console.Write("Moedas Atuais: ");
+float moedas = float.Parse(Console.ReadLine());
+var moedasDobradas = moedas * 2; // Uso do var
+
+// 5. XP (long) - Divisão
+Console.Write("XP Total: ");
+long xp = long.Parse(Console.ReadLine());
+long xpMeio = xp / 2;
+
+
+// Status do héroi
+Console.WriteLine($"\n--- STATUS: {nome} ---");
+Console.WriteLine($"Ataque: {ataqueTotal} | Vida Inimigo: {vidaRestante}");
+Console.WriteLine($"Moedas: {moedasDobradas} | XP Médio: {xpMeio}");
+Console.WriteLine($"Classes: {ClassedoHeroi}");

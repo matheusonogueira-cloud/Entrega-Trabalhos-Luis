@@ -1,0 +1,38 @@
+//Matheus Oliveira Nogueira
+
+Random random = new Random();
+
+Console.WriteLine("=== Pedra, Papel e Tesoura ===");
+
+Console.WriteLine("Era uma vez um grupo de exploradores que foram explorar uma ilha misteriosa cheia de tesouros, as pessoas não iriam na ilha pois quem ia não retornava. \nesse grupo assim que chegaram encontraram o guardião da ilha so que para para passar tinham que ganhar dele no Pedra, Papel e Tesoura. \n sera que você consegue ganhar?");
+
+Console.WriteLine("1 - Pedra");
+Console.WriteLine("2 - Papel");
+Console.WriteLine("3 - Tesoura");
+
+Console.Write("Escolha uma opção: ");
+int jogador = int.Parse(Console.ReadLine());
+
+// CPU escolhe número aleatório entre 1 e 3
+int cpu = random.Next(1, 4);
+
+string[] nomes = { "", "Pedra", "Papel", "Tesoura" };
+
+Console.WriteLine($"Você escolheu: {nomes[jogador]}");
+Console.WriteLine($"CPU escolheu: {nomes[cpu]}");
+
+// Verificando resultado
+if (jogador == cpu)
+{
+    Console.WriteLine("Empate!");
+}
+else if ((jogador == 1 && cpu == 3) ||
+         (jogador == 2 && cpu == 1) ||
+         (jogador == 3 && cpu == 2))
+{
+    Console.WriteLine("Você venceu!");
+}
+else
+{
+    Console.WriteLine("CPU venceu!");
+}

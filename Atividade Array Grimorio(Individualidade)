@@ -1,0 +1,129 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
+
+partial class Program
+{
+    static void Main()
+    {
+        Console.Title = "U.A. High School - Registro de Alunos";
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine("=== SISTEMA DE IDENTIFICAÇÃO DE INDIVIDUALIDADES ===");
+        Console.ResetColor();
+
+        Console.Write("\nDigite o nome do seu personagem: ");
+        string nome = Console.ReadLine() ?? string.Empty;
+
+        // Listas de quirks (mantidas do código original)
+        List<string> comuns = new List<string> {
+            "Rigidez", "Cauda", "Super Força Simples", "Visão Térmica", "Elasticidade",
+            "Pulo Duplo", "Garras de Aço", "Escalar Paredes", "Respiração Debaixo d'água",
+            "Pele de Rocha", "Audição Aguçada", "Velocidade Aumentada", "Produção de Cola",
+            "Voz Alta", "Mãos Gigantes", "Braços Múltiplos", "Cabelo de Vinha", "Língua Longa",
+            "Visão Noturna", "Corpo de Mola"
+        };
+
+        List<string> raras = new List<string> {
+            "Gravidade Zero", "Dark Shadow", "Criação de Objetos", "Endurecimento",
+            "Eletricidade", "Teletransporte Curto", "Lâminas de Ar", "Manipulação de Areia",
+            "Invisibilidade", "Ácido", "Som Obscuro", "Transformação em Metal",
+            "Controle de Insetos", "Leitura de Mente", "Cura Acelerada", "Escudos de Energia"
+        };
+
+        List<string> epicas = new List<string> {
+            "Meio Frio e Meio Quente", "Explosão", "Desintegração", "Cópia",
+            "Lavagem Cerebral", "Rewind (Rebobinar)", "Overhaul", "Chamas Azuis",
+            "Voo Alado", "Manipulação de Sangue", "Telecinésia", "Portal Sombrio"
+        };
+
+        List<string> lendarias = new List<string> {
+            "One For All", "All For One", "New Order (Star and Stripe)", "Manifest", "Erase"
+        };
+
+        Random rnd = new Random();
+
+        while (true)
+        {
+            Console.WriteLine($"\nIniciando diagnóstico de DNA para: {nome}...");
+            CarregamentoFake();
+
+            int chance = rnd.Next(1, 101);
+            string quirkGanha = "";
+            ConsoleColor corDestaque = ConsoleColor.White;
+
+            if (chance <= 50)
+            {
+                quirkGanha = comuns[rnd.Next(comuns.Count)];
+                corDestaque = ConsoleColor.Gray;
+            }
+            else if (chance <= 80)
+            {
+                quirkGanha = raras[rnd.Next(raras.Count)];
+                corDestaque = ConsoleColor.Green;
+            }
+            else if (chance <= 95)
+            {
+                quirkGanha = epicas[rnd.Next(epicas.Count)];
+                corDestaque = ConsoleColor.Magenta;
+            }
+            else
+            {
+                EfeitoSuspense();
+                quirkGanha = lendarias[rnd.Next(lendarias.Count)];
+                corDestaque = ConsoleColor.Yellow;
+            }
+
+            Console.Write("\nRESULTADO FINAL: ");
+            Console.ForegroundColor = corDestaque;
+            Console.WriteLine($"[{quirkGanha.ToUpper()}]");
+            Console.ResetColor();
+
+            Console.WriteLine("\n[Pressione qualquer tecla para continuar]");
+            Console.ReadKey(intercept: true);
+
+            Console.Write("\nQuer Sair [S/N]: ");
+            string sair = (Console.ReadLine());
+            while (sair != "s" && sair != "n")
+            {
+                Console.Write("Digite Apenas [S/N]: ");
+                sair = (Console.ReadLine());
+            }
+
+            if (sair == "s")
+            {
+                break;
+            }
+
+            Console.Write("\nDigite o nome do seu personagem (ou Enter para manter): ");
+            string novoNome = Console.ReadLine() ?? string.Empty;
+            if (!string.IsNullOrWhiteSpace(novoNome))
+            {
+                nome = novoNome;
+            }
+        }
+    }
+
+    static void CarregamentoFake()
+    {
+        for (int i = 0; i <= 20; i++)
+        {
+            Console.Write("▒");
+            Thread.Sleep(50);
+        }
+        Console.WriteLine(" OK!");
+    }
+
+    static void EfeitoSuspense()
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        string msg = "\n[ALERTA: NÍVEL DE ENERGIA INSTÁVEL DETECTADO]...";
+        foreach (char c in msg)
+        {
+            Console.Write(c);
+            Thread.Sleep(40);
+        }
+        Thread.Sleep(1000);
+        Console.WriteLine("\n");
+        Console.ResetColor();
+    }
+}
